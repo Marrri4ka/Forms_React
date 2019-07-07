@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { withRouter } from "react-router";
 
 class Home extends React.Component{
   constructor(props){
@@ -46,7 +47,14 @@ class Home extends React.Component{
       </nav>
       <div>
         {this.props.allMessages.map((element)=>
+          <div>
           <li>{element.message}</li>
+            <span>Likes:{element.likes}</span>
+            <br/>
+
+          <button onClick={()=>this.props.onLike(element)}>+</button>
+          <button onClick={()=>this.props.onDisLike(element)}>-</button>
+          </div>
         )}
       </div>
     </div>
@@ -56,8 +64,10 @@ class Home extends React.Component{
 
 
 Home.propTypes={
-  allMessages: PropTypes.array
+  allMessages: PropTypes.array,
+  onLike: PropTypes.func,
+  onDisLike: PropTypes.func
 }
 
 
-export default Home;
+export default withRouter(Home);

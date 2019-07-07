@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from "react-router";
 
 class NewPost extends React.Component {
   _message = null;
@@ -40,4 +41,4 @@ NewPost.propTypes={
   onNewCreationProperty:PropTypes.func
 };
 
-export default NewPost;
+export default withRouter(NewPost);
