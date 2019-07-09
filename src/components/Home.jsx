@@ -50,10 +50,12 @@ class Home extends React.Component{
           <div>
           <li>{element.message}</li>
             <span>Likes:{element.likes}</span>
+            <span>Dislikes:{element.dislikes}</span>
             <br/>
 
           <button onClick={()=>this.props.onLike(element)}>+</button>
           <button onClick={()=>this.props.onDisLike(element)}>-</button>
+          <button onClick={()=>this.props.onDelete(element)}>-</button>
           </div>
         )}
       </div>
@@ -66,7 +68,9 @@ class Home extends React.Component{
 Home.propTypes={
   allMessages: PropTypes.array,
   onLike: PropTypes.func,
-  onDisLike: PropTypes.func
+  onDisLike: PropTypes.func,
+  onDelete: PropTypes.func
+
 }
 
 
