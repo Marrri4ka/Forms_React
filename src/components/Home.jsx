@@ -2,14 +2,26 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withRouter } from "react-router";
+import ReactDOM from 'react-dom';
+import { Container, Button, Alert } from 'react-bootstrap';
+import { CSSTransition } from 'react-transition-group';
+import './styles.css';
+import Moment from 'moment';
 
 class Home extends React.Component{
   constructor(props){
     super(props);
 
   }
+
+ displayTimeOpen(timeOpen) {
+  return timeOpen.from(new Moment(), true);
+}
   render(){
     return(
+
+
+
       <div><nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +34,7 @@ class Home extends React.Component{
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <Link to ='/forum'><a class="nav-link" href="#">Forum</a></Link>
+              <Link to ='/forum'><a class="nav-link" href="#">Tamagotchi</a></Link>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,13 +61,17 @@ class Home extends React.Component{
         {this.props.allMessages.map((element)=>
           <div>
           <li>{element.message}</li>
-            <span>Likes:{element.likes}</span>
-            <span>Dislikes:{element.dislikes}</span>
+            <span>Mood:{element.mood}</span>
+            <span>Food:{element.food}</span>
+            <span>Sleep:{element.sleep}</span>
+            <span>timeOpen:{element.timeOpen}</span>
+
             <br/>
 
-          <button onClick={()=>this.props.onLike(element)}>+</button>
-          <button onClick={()=>this.props.onDisLike(element)}>-</button>
-          <button onClick={()=>this.props.onDelete(element)}>-</button>
+          <button onClick={()=>this.props.onLike(element)}>Play</button>
+          <button onClick={()=>this.props.onDisLike(element)}>Feed</button>
+          <button onClick={()=>this.props.onBed(element)}>Go to bed</button>
+          <button onClick={()=>this.props.onDelete(element)}>Delete</button>
           </div>
         )}
       </div>
@@ -69,7 +85,9 @@ Home.propTypes={
   allMessages: PropTypes.array,
   onLike: PropTypes.func,
   onDisLike: PropTypes.func,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  onBed: PropTypes.func,
+  timeOpen: PropTypes.instanceOf(Moment).isRequired
 
 }
 

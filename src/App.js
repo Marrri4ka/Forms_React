@@ -11,14 +11,20 @@ class App extends React.Component {
   onLike = element => {
   const newmessageList = [...this.state.messageList];
   const index = newmessageList.indexOf(element);
-  newmessageList[index].likes++;
+  newmessageList[index].mood++;
   this.setState({ messageList: newmessageList });
 };
 
 onDisLike = element => {
 const newmessageList = [...this.state.messageList];
 const index = newmessageList.indexOf(element);
-newmessageList[index].dislikes++;
+newmessageList[index].food++;
+this.setState({ messageList: newmessageList });
+};
+onBed = element => {
+const newmessageList = [...this.state.messageList];
+const index = newmessageList.indexOf(element);
+newmessageList[index].sleep++;
 this.setState({ messageList: newmessageList });
 };
 
@@ -39,18 +45,23 @@ this.setState({ messageList: newmessageList });
     this.onNewCreation = this.onNewCreation.bind(this);
   };
   onNewCreation(message){
-    message.likes = 0;
-    message.dislikes=0;
+    message.mood = 100;
+    message.food=80;
+    message.sleep= 60;
+
+
     var newMessageList = this.state.messageList.slice();
     newMessageList.push(message);
     this.setState({messageList: newMessageList});
+
+
   }
 
   render() {
     return (
       <div>
         <Switch>
-          <Route exact path='/' render={()=><Home allMessages={this.state.messageList} onLike={this.onLike} onDisLike={this.onDisLike} onDelete={this.onDelete}/>}/>
+          <Route exact path='/' render={()=><Home allMessages={this.state.messageList} onLike={this.onLike} onDisLike={this.onDisLike} onDelete={this.onDelete} onBed={this.onBed}/>}/>
           <Route path='/forum' render={()=><NewPost onNewCreationProperty={this.onNewCreation}/>}/>
         </Switch>
       </div>

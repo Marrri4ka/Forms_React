@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withRouter } from "react-router";
 import Joi from 'joi-browser';
 
+import Moment from 'moment';
+
 class NewPost extends React.Component {
 
   state={
@@ -67,7 +69,8 @@ return errors;
     if(errors) return;
 
     this.props.onNewCreationProperty({
-      message:this._message.value
+      message:this._message.value,
+      timeOpen:new Moment()
 
     });
     this.props.history.push('/');
