@@ -1,24 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-$ npm install react-router-dom@4.0.0 --save
-import { Switch, Route } from 'react-router-dom'; - app.jsx
-import { HashRouter } from 'react-router-dom'; - index.jsx
-
-const render = (Component) => {
-  ReactDOM.render(<div><AppContainer>
-    <HashRouter>
-      <Component/>
-    </HashRouter>
-  </AppContainer></div>, document.getElementById('root'));
-};
-
-render(App);
-
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    render(App)
-  });
-}
-
+https://www.npmjs.com/package/react-poke-sprites - Pokemons
 
 ## Available Scripts
 

@@ -17,6 +17,7 @@ class NewPost extends React.Component {
   }
 
   _message = null;
+  _pokemon = null;
 
   constructor(props) {
     super(props);
@@ -72,7 +73,8 @@ return errors;
       message:this._message.value,
 
 
-    }, new Moment());
+
+    }, new Moment(), this._pokemon.value);
     this.props.history.push('/');
   }
 
@@ -81,7 +83,16 @@ return errors;
       <div>
         <form onSubmit={this.handleNewPost}>
           <label htmlFor="message">Message: </label>
+          <select ref={(select)=> {this._pokemon = select;}}>
+            <option value="Pikachu">Pikachu</option>
+            <option value="Raichu">Raichu</option>
+            <option value="Eevee">Eevee</option>
+            <option value="Ditto">Ditto</option>
+            <option value="Lugia">Lugia</option>
+            <option value="Ho-Oh">Ho-Oh</option>
+          </select>
           <input
+
             type="text"
             id="message"
             name="message5"

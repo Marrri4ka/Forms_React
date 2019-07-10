@@ -7,6 +7,7 @@ import { Container, Button, Alert } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import './styles.css';
 import Moment from 'moment';
+import PokeSprite from 'react-poke-sprites'
 
 class Home extends React.Component{
   constructor(props){
@@ -19,7 +20,9 @@ class Home extends React.Component{
 
 
 
-      <div><nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -57,6 +60,10 @@ class Home extends React.Component{
       <div>
         {this.props.allMessages.map((element)=>
           <div>
+            <PokeSprite
+           pokemon={element.pokemon}
+           className="lugia-class"
+       />
           <li>{element.message}</li>
             <span>Mood:{element.mood}</span>
             <span>Food:{element.food}</span>
