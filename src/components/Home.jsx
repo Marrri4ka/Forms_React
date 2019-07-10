@@ -7,7 +7,11 @@ import { Container, Button, Alert } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import './styles.css';
 import Moment from 'moment';
-import PokeSprite from 'react-poke-sprites'
+import PokeSprite from 'react-poke-sprites';
+import { SketchPicker } from 'react-color';
+
+
+
 
 class Home extends React.Component{
   constructor(props){
@@ -15,12 +19,23 @@ class Home extends React.Component{
 
   }
 
+  state = {
+   background: '#fff',
+ };
+
+ handleChangeComplete = (color) => {
+   this.setState({ background: color.hex });
+ };
+
   render(){
     return(
 
 
 
       <div>
+       <SketchPicker color={ this.state.background }
+        onChangeComplete={ this.handleChangeComplete }/>
+
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -57,18 +72,20 @@ class Home extends React.Component{
           </form>
         </div>
       </nav>
-      <div>
+      <div >
         {this.props.allMessages.map((element)=>
           <div>
+
             <PokeSprite
            pokemon={element.pokemon}
            className="lugia-class"
        />
-          <li>{element.message}</li>
+          <li style={{backgroundColor: this.state.background}}>{element.message}</li>
             <span>Mood:{element.mood}</span>
             <span>Food:{element.food}</span>
             <span>Sleep:{element.sleep}</span>
             <span>timeOpen:{element.timeOpen.from (new Moment(), true)}</span>
+
 
             <br/>
 

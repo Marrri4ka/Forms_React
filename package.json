@@ -8,6 +8,7 @@
     "moment": "^2.18.1",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.9",
+    "react-color": "^2.17.3",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.12.4",
     "react-poke-sprites": "0.0.8",
