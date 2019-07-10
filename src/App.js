@@ -44,10 +44,11 @@ this.setState({ messageList: newmessageList });
     }
     this.onNewCreation = this.onNewCreation.bind(this);
   };
-  onNewCreation(message){
+  onNewCreation(message, timeOpen){
     message.mood = 100;
     message.food=80;
     message.sleep= 60;
+    message.timeOpen = timeOpen;
 
 
     var newMessageList = this.state.messageList.slice();

@@ -70,9 +70,9 @@ return errors;
 
     this.props.onNewCreationProperty({
       message:this._message.value,
-      timeOpen:new Moment()
 
-    });
+
+    }, new Moment());
     this.props.history.push('/');
   }
 

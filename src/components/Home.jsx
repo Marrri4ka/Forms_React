@@ -14,9 +14,6 @@ class Home extends React.Component{
 
   }
 
- displayTimeOpen(timeOpen) {
-  return timeOpen.from(new Moment(), true);
-}
   render(){
     return(
 
@@ -64,7 +61,7 @@ class Home extends React.Component{
             <span>Mood:{element.mood}</span>
             <span>Food:{element.food}</span>
             <span>Sleep:{element.sleep}</span>
-            <span>timeOpen:{element.timeOpen}</span>
+            <span>timeOpen:{element.timeOpen.from (new Moment(), true)}</span>
 
             <br/>
 
@@ -86,8 +83,7 @@ Home.propTypes={
   onLike: PropTypes.func,
   onDisLike: PropTypes.func,
   onDelete: PropTypes.func,
-  onBed: PropTypes.func,
-  timeOpen: PropTypes.instanceOf(Moment).isRequired
+  onBed: PropTypes.func
 
 }
 
