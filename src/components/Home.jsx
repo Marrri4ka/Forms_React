@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState }from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withRouter } from "react-router";
@@ -13,28 +13,20 @@ import { SketchPicker } from 'react-color';
 
 
 
-class Home extends React.Component{
-  constructor(props){
-    super(props);
+function  Home(props){
+  const [showButton, setShowButton] = useState(true);
+  const [showMessage, setShowMessage] = useState(false);
 
-  }
 
-  state = {
-   background: '#fff',
- };
 
- handleChangeComplete = (color) => {
-   this.setState({ background: color.hex });
- };
 
-  render(){
     return(
 
 
 
       <div>
-       <SketchPicker color={ this.state.background }
-        onChangeComplete={ this.handleChangeComplete }/>
+
+
 
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -73,33 +65,68 @@ class Home extends React.Component{
         </div>
       </nav>
       <div >
-        {this.props.allMessages.map((element)=>
+        {props.allMessages.map((element)=>
           <div>
 
             <PokeSprite
            pokemon={element.pokemon}
            className="lugia-class"
        />
-          <li style={{backgroundColor: this.state.background}}>{element.message}</li>
-            <span>Mood:{element.mood}</span>
-            <span>Food:{element.food}</span>
-            <span>Sleep:{element.sleep}</span>
-            <span>timeOpen:{element.timeOpen.from (new Moment(), true)}</span>
+
+          <li>{element.message}</li>
+          <Container style={{ paddingTop: '2rem' }}>
+          {showButton && (
+            <Button style={{backgroundColor:'red'}}
+              onClick={() => setShowMessage(true)}
+              size="lg"
+            >
+              How do I feel
+            </Button>
+          )}
+          <CSSTransition
+            in={showMessage}
+            timeout={300}
+            classNames="alert"
+            unmountOnExit
+            onEnter={() => setShowButton(false)}
+            onExited={() => setShowButton(true)}
+          >
+            <Alert
+              variant="primary"
+              dismissible
+              onClose={() => setShowMessage(false)}
+            >
+              <Alert.Heading>
+                My status
+              </Alert.Heading>
+              <p>
+              <span>Mood:{element.mood}</span>
+              <span>Food:{element.food}</span>
+              <span>Sleep:{element.sleep}</span>
+              <span>timeOpen:{element.timeOpen.from (new Moment(), true)}</span>
 
 
-            <br/>
+              <br/>
 
-          <button onClick={()=>this.props.onLike(element)}>Play</button>
-          <button onClick={()=>this.props.onDisLike(element)}>Feed</button>
-          <button onClick={()=>this.props.onBed(element)}>Go to bed</button>
-          <button onClick={()=>this.props.onDelete(element)}>Delete</button>
+            <button onClick={()=>props.onLike(element)}>Play</button>
+            <button onClick={()=>props.onDisLike(element)}>Feed</button>
+            <button onClick={()=>props.onBed(element)}>Go to bed</button>
+            <button onClick={()=>props.onDelete(element)}>Delete</button>
+              </p>
+              <Button onClick={() => setShowMessage(false)}>
+                Close
+              </Button>
+            </Alert>
+          </CSSTransition>
+        </Container>
+
           </div>
         )}
       </div>
     </div>
     )
   }
-}
+
 
 
 Home.propTypes={
