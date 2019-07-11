@@ -76,7 +76,7 @@ function  Home(props){
           <li>{element.message}</li>
           <Container style={{ paddingTop: '2rem' }}>
           {showButton && (
-            <Button style={{backgroundColor:'red'}}
+            <Button  style={{backgroundColor: new Moment().diff (element.timeOpen)> 3000 ? 'red' : 'green'}}
               onClick={() => setShowMessage(true)}
               size="lg"
             >

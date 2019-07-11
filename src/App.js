@@ -61,6 +61,8 @@ this.setState({ messageList: newmessageList });
   }
 
   render() {
+    const oldState = this.state;
+    setTimeout(()=> this.setState({oldState}),1000);
     return (
       <div>
         <Switch>
